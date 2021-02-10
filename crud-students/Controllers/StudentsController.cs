@@ -138,13 +138,14 @@ namespace crud_students.Controllers
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int idDelete)
         {
-            Student student = db.Students.Find(id);
+            Student student = db.Students.Find(idDelete);
             db.Students.Remove(student);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
 
         protected override void Dispose(bool disposing)
         {

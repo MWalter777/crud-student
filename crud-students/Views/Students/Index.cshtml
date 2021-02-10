@@ -57,7 +57,7 @@
                         @Html.ActionLink("Delete", "Delete", new { id = item.Id })
                         <button class="btn btn-outline-warning" onclick="updateModal(@item.Id,'@item.Name', '@item.surname', @item.age, '@item.gender')">Update</button>
                         <button class="btn btn-outline-info" onclick="infoModal('@item.Name', '@item.surname', @item.age, '@item.gender')">Show</button>
-                        <button class="btn btn-outline-danger" onclick="updateModal(@item.Id,'@item.Name', '@item.surname', @item.age, '@item.gender')">Delete</button>
+                        <button class="btn btn-outline-danger" onclick="deleteModal(@item.Id,'@item.Name', '@item.surname', @item.age, '@item.gender')">Delete</button>
                     </td>
                 </tr>
             }
@@ -173,6 +173,61 @@
 </div>
 
 
+<div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="titleModalDelete"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="/Students/Delete" method="post">
+                    @Html.AntiForgeryToken()
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <input type="number" id="idDelete" name="idDelete" hidden />
+                            <label class="control-label col-md-2">Name</label>
+                            <div class="input-text">
+                                <input type="text" value="" id="NameDelete" class="form-control" readonly style="max-width: 100%;width: 100%;" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Surname</label>
+                            <div class="input-text">
+                                <input type="text" value="" id="surnameDelete" class="form-control" readonly style="max-width: 100%;width: 100%;" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Age</label>
+                            <div class="input-text">
+                                <input type="number" value="" id="ageDelete" class="form-control" readonly />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Gender</label>
+                            <div class="input-text">
+                                <input type="text" value="" id="genderDelete" class="form-control" readonly style="max-width: 100%;width: 100%;" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10" style="max-width: 100%;display: flex;flex-direction: column;justify-content: center;">
+                                <input type="submit" value="Delete" class="btn btn-outline-danger" style="width: 95%;max-width: 100%;margin: auto;"/>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 
 
@@ -222,6 +277,17 @@
             $('#genderInfo').val(gender);
             $('#titleModalInfo').text("Info Student");
             $('#infomodal').modal('show');
+        }
+
+
+        function deleteModal(Id, Name, surname, age, gender){
+            $('#idDelete').val(Id);
+            $('#NameDelete').val(Name);
+            $('#surnameDelete').val(surname);
+            $('#ageDelete').val(age);
+            $('#genderDelete').val(gender);
+            $('#titleModalDelete').text("¿Are you sure delete "+Name+" ?");
+            $('#modalDelete').modal('show');
         }
 
     </script>
