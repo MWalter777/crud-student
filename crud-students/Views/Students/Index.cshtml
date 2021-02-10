@@ -55,7 +55,9 @@
                         @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
                         @Html.ActionLink("Details", "Details", new { id = item.Id }) |
                         @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                        <button onclick="updateModal(@item.Id,'@item.Name', '@item.surname', @item.age, '@item.gender')">Update</button>
+                        <button class="btn btn-outline-warning" onclick="updateModal(@item.Id,'@item.Name', '@item.surname', @item.age, '@item.gender')">Update</button>
+                        <button class="btn btn-outline-info" onclick="infoModal('@item.Name', '@item.surname', @item.age, '@item.gender')">Show</button>
+                        <button class="btn btn-outline-danger" onclick="updateModal(@item.Id,'@item.Name', '@item.surname', @item.age, '@item.gender')">Delete</button>
                     </td>
                 </tr>
             }
@@ -120,6 +122,57 @@
 </div>
 
 
+<div class="modal fade" id="infomodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="titleModalInfo"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Name</label>
+                        <div class="input-text">
+                            <input type="text" value="" id="NameInfo" class="form-control" readonly style="max-width: 100%;width: 100%;" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Surname</label>
+                        <div class="input-text">
+                            <input type="text" value="" id="surnameInfo" class="form-control" readonly style="max-width: 100%;width: 100%;" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Age</label>
+                        <div class="input-text">
+                            <input type="number" value="" id="ageInfo" class="form-control" readonly />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Gender</label>
+                        <div class="input-text">
+                            <input type="text" value="" id="genderInfo" class="form-control" readonly style="max-width: 100%;width: 100%;" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10" style="max-width: 100%;display: flex;flex-direction: column;justify-content: center;">
+                            <button class="btn btn-outline-primary" style="width: 95%;max-width: 100%;margin: auto;" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 
 
@@ -148,7 +201,7 @@
             form.action = "/Students/CreateWithModal";
             $('#modal').modal('show');
         }
-
+        
         function updateModal(Id, Name, surname, age, gender){
             var form = document.getElementById('form');
             form.action = "/Students/UpdateWithModal";
@@ -159,6 +212,16 @@
             $('#gender').val(gender);
             $('#titleModal').text("Update Student");
             $('#modal').modal('show');
+        }
+
+        
+        function infoModal(Name, surname, age, gender){
+            $('#NameInfo').val(Name);
+            $('#surnameInfo').val(surname);
+            $('#ageInfo').val(age);
+            $('#genderInfo').val(gender);
+            $('#titleModalInfo').text("Info Student");
+            $('#infomodal').modal('show');
         }
 
     </script>
