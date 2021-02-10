@@ -8,8 +8,7 @@
 
 <div class="container students-index">
     <p>
-        <a class="btn btn-secondary" href="/Students/Create">Create new</a>
-        <a class="btn btn-secondary" href="#"  onclick="createModal()">Create new</a>
+        <a class="btn btn-secondary" href="#"  onclick='createModal()'>Create new</a>
     </p>
     <table class="table" id="myTable">
         <thead>
@@ -52,12 +51,9 @@
                         @Html.DisplayFor(modelItem => item.create_at)
                     </td>
                     <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
                         <button class="btn btn-outline-warning" onclick="updateModal(@item.Id,'@item.Name', '@item.surname', @item.age, '@item.gender')">Update</button>
                         <button class="btn btn-outline-info" onclick="infoModal('@item.Name', '@item.surname', @item.age, '@item.gender')">Show</button>
-                        <button class="btn btn-outline-danger" onclick="deleteModal(@item.Id,'@item.Name', '@item.surname', @item.age, '@item.gender')">Delete</button>
+                        <button class="btn btn-outline-danger" onclick='deleteModal(@item.Id,"@item.Name", "@item.surname", "@item.age", "@item.gender")'>Delete</button>
                     </td>
                 </tr>
             }
