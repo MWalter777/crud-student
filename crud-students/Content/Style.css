@@ -15,7 +15,13 @@
 .students-index{
     margin-top: 2rem;
     width: 100%;
-    min-height: 100vh;
+    min-height: 80vh;
+    border-style: none solid solid solid;
+    border-width: 1px;
+    border-color: #eee;
+    background-color: #FFF;
+    border-radius: 10px;
+    padding-top: 2rem;
 }
 
 
@@ -101,4 +107,38 @@
 .carousel-control-prev{
     z-index: 1;
 }
+
+.img-container{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
+    overflow: hidden;
+}
+
+.image-responsive{
+    transition: 0.2s;
+}
+
+.image-responsive:hover{
+    transform: scale(1.2,1.2);
+}
+
+.card{
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+	border-style: none solid solid solid;
+    border-width: 1px;
+    border-color: #eee;
+    background-color: #FFF;
+    border-radius: 10px;
+}
+
+body {
+	background-color: #fafafa;
+}
+
+
+
 

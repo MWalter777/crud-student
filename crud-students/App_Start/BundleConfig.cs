@@ -28,7 +28,7 @@ namespace crud_students
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
-                      "~/Content/style.css",
+                      "~/Content/Style.css",
                       "~/Content/jquery.dataTables.min.css"));
         }
     }

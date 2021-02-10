@@ -1,4 +1,5 @@
-﻿using System;
+﻿using crud_students.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,9 +9,11 @@ namespace crud_students.Controllers
 {
     public class HomeController : Controller
     {
+        private crud_studentsContext db = new crud_studentsContext();
+
         public ActionResult Index()
         {
-            return View();
+            return View(db.Students.ToList());
         }
 
         public ActionResult About()

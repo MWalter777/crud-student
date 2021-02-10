@@ -1,4 +1,6 @@
-﻿@{
+﻿@model IEnumerable<crud_students.Models.Student>
+
+@{
     ViewBag.Title = "Index";
 }
 
@@ -34,67 +36,21 @@
         </div>
     </div>
 
-    <div>
-        <p>
-            contenido
-        </p>
-        <p>
-            contenido
-        </p>
-        <p>
-            contenido
-        </p>
-        <p>
-            contenido
-        </p>
-        <p>
-            contenido
-        </p>
-        <p>
-            contenido
-        </p>
-        <p>
-            contenido
-        </p>
-        <p>
-            contenido
-        </p>
-        <p>
-            contenido
-        </p>
-        <p>
-            contenido
-        </p>
-        <p>
-            contenido
-        </p>
-        <p>
-            contenido
-        </p>
-        <p>
-            contenido
-        </p>
-        <p>
-            contenido
-        </p>
-        <p>
-            contenido
-        </p>
-        <p>
-            contenido
-        </p>
-        <p>
-            contenido
-        </p>
-        <p>
-            contenido
-        </p>
-        <p>
-            contenido
-        </p>
-        <p>
-            contenido
-        </p>
+    <div class="container">
+        @foreach (var item in Model)
+        {
+            <div class="card" style="width: 100%;">
+                <div class="card-body">
+                    <h5 class="card-title text-center">@item.Name</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">@item.surname</h6>
+                    <div class="img-container">
+                        <img src="https://images4.alphacoders.com/937/thumb-1920-937608.png" alt="image" class="image-responsive" />
+                    </div>
+                    <p class="card-text">Create at: @item.create_at</p>
+                    <a href="#" class="card-link">Age: @item.age</a>
+                </div>
+            </div>
+        }
     </div>
 </div>
 
@@ -102,16 +58,21 @@
 @section scripts {
 
     <script>
-        window.addEventListener('scroll', (event) => {
+
+        function showOrHide() {
             if (window.scrollY > 40) {
                 $('.nav-custom').removeClass('transparent');
             } else {
                 $('.nav-custom').addClass('transparent');
             }
+        }
+
+        window.addEventListener('scroll', (event) => {
+            showOrHide();
         });
 
-        window.addEventListener('onload', (event) => {
-            $('.nav-custom').addClass('transparent');
+        window.addEventListener('load', (event) => {
+            showOrHide();
         });
     </script>
 
