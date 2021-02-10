@@ -14,13 +14,13 @@ namespace crud_students.Controllers
     {
         private crud_studentsContext db = new crud_studentsContext();
 
-        // GET: Students
+
         public ActionResult Index()
         {
             return View(db.Students.ToList());
         }
 
-        // GET: Students/Details/5
+
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -35,7 +35,7 @@ namespace crud_students.Controllers
             return View(student);
         }
 
-        // GET: Students/Create
+
         public ActionResult Create()
         {
             return View();
@@ -56,7 +56,27 @@ namespace crud_students.Controllers
             return View(student);
         }
 
-        // GET: Students/Edit/5
+        public ActionResult CreateWithModal()
+        {
+            return RedirectToAction("Index");        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateWithModal([Bind(Include = "Name,surname,age,gender")] Student student)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Students.Add(student);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }else
+            {
+                ViewData["error"] = "Student not created";
+                return View("Index",db.Students.ToList());
+            }
+        }
+
+
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -84,7 +104,23 @@ namespace crud_students.Controllers
             return View(student);
         }
 
-        // GET: Students/Delete/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult UpdateWithModal([Bind(Include = "Id,Name,surname,age,gender,create_at")] Student student)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(student).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                ViewData["error"] = "Student not modified";
+                return View("Index", db.Students.ToList());
+            }
+        }
+
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -99,7 +135,7 @@ namespace crud_students.Controllers
             return View(student);
         }
 
-        // POST: Students/Delete/5
+
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

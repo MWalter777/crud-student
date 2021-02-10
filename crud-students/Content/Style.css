@@ -1,4 +1,17 @@
 ﻿
+.input-text{
+    width: 90%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-control{
+    max-width: 100%;
+    width: 100%;
+}
+
+
 .students-index{
     margin-top: 2rem;
     width: 100%;

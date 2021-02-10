@@ -7,10 +7,9 @@
 
 
 <div class="container students-index">
-
-
     <p>
         <a class="btn btn-secondary" href="/Students/Create">Create new</a>
+        <a class="btn btn-secondary" href="#"  onclick="createModal()">Create new</a>
     </p>
     <table class="table" id="myTable">
         <thead>
@@ -56,6 +55,7 @@
                         @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
                         @Html.ActionLink("Details", "Details", new { id = item.Id }) |
                         @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                        <button onclick="updateModal(@item.Id,'@item.Name', '@item.surname', @item.age, '@item.gender')">Update</button>
                     </td>
                 </tr>
             }
@@ -63,11 +63,104 @@
 </table>
 </div>
 
+
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="titleModal"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="#" method="post" id="form">
+                    @Html.AntiForgeryToken()
+                    <div class="form-horizontal">
+                        <div id="errors"></div>
+                        <div class="form-group">
+                            <input type="number" id="Id" name="Id" hidden />
+                            <label class="control-label col-md-2">Name</label>
+                            <div class="input-text">
+                                <input type="text" value="" id="Name" name="Name" class="form-control" required style="max-width: 100%;width: 100%;" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Surname</label>
+                            <div class="input-text">
+                                <input type="text" value="" id="surname" name="surname" class="form-control" required style="max-width: 100%;width: 100%;" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Age</label>
+                            <div class="input-text">
+                                <input type="number" value="" id="age" name="age" class="form-control" required />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Gender</label>
+                            <div class="input-text">
+                                <input type="text" value="" id="gender" name="gender" class="form-control" required style="max-width: 100%;width: 100%;" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10" style="max-width: 100%;display: flex;flex-direction: column;justify-content: center;">
+                                <input type="submit" value="Create" class="btn btn-outline-primary" style="width: 95%;max-width: 100%;margin: auto;"/>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
 @section scripts {
     <script>
         $(document).ready(function () {
             $('#myTable').DataTable();
         });
+
+        let error = '@ViewData["error"]';
+        if (error) {
+            var errors = document.getElementById('errors');
+            errors.innerHTML = error;
+            $('#errors').addClass("alert alert-danger");
+            createModal();
+        }
+
+        function createModal() {
+            var form = document.getElementById('form');
+            $('#Id').val("");
+            $('#Name').val("");
+            $('#surname').val("");
+            $('#age').val("");
+            $('#gender').val("");
+            $('#titleModal').text("New Student");
+            form.action = "/Students/CreateWithModal";
+            $('#modal').modal('show');
+        }
+
+        function updateModal(Id, Name, surname, age, gender){
+            var form = document.getElementById('form');
+            form.action = "/Students/UpdateWithModal";
+            $('#Id').val(Id);
+            $('#Name').val(Name);
+            $('#surname').val(surname);
+            $('#age').val(age);
+            $('#gender').val(gender);
+            $('#titleModal').text("Update Student");
+            $('#modal').modal('show');
+        }
+
     </script>
 }
 
