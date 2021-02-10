@@ -41,12 +41,10 @@ namespace crud_students.Controllers
             return View();
         }
 
-        // POST: Students/Create
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
-        // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,surname,age,gender,create_at")] Student student)
+        public ActionResult Create([Bind(Include = "Id,Name,surname,age,gender")] Student student)
         {
             if (ModelState.IsValid)
             {
@@ -73,9 +71,6 @@ namespace crud_students.Controllers
             return View(student);
         }
 
-        // POST: Students/Edit/5
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
-        // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Name,surname,age,gender,create_at")] Student student)

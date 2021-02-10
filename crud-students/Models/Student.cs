@@ -5,12 +5,14 @@
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity;
     using System.Linq;
+    using System.Data.SqlTypes;
 
     [Table("Student")]
     public class Student
     {
         public Student()
         {
+            create_at = DateTime.Now;
         }
 
         [Key]
@@ -31,7 +33,6 @@
         [StringLength(20)]
         public string gender { get; set; }
 
-        [Required]
         public DateTime create_at { get; set; }
 
     }
