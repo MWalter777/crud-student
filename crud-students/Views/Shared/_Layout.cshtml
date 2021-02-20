@@ -29,7 +29,9 @@
     </div>
 
     <div class="content-custom">
-        @RenderBody()
+        <div class="container students-index" id="principal">
+            @RenderBody()
+        </div>
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year</p>
@@ -39,5 +41,10 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });
+    </script>
 </body>
 </html>

@@ -4,42 +4,45 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-secondary" })
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.studentsubject.student.name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.studentsubject.subject.name_subject)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.score_data)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.studentsubject.student.name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.studentsubject.subject.name_subject)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.score_data)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
-        </td>
-    </tr>
-}
+<table class="table" id="myTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.studentsubject.student.name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.studentsubject.subject.name_subject)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.score_data)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.studentsubject.student.name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.studentsubject.subject.name_subject)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.score_data)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.id }, new { @class = "btn btn-outline-warning" }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.id }, new { @class = "btn btn-outline-info" }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.id }, new { @class = "btn btn-outline-danger" })
+                </td>
+            </tr>
+        }
+    </tbody>
 
 </table>
