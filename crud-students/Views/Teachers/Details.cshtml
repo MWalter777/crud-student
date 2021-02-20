@@ -1,4 +1,4 @@
-﻿@model crud_students.Models.Student
+﻿@model crud_students.Models.Teacher
 
 @{
     ViewBag.Title = "Details";
@@ -7,7 +7,7 @@
 <h2>Details</h2>
 
 <div>
-    <h4>Student</h4>
+    <h4>Teacher</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -27,32 +27,16 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.age)
+            @Html.DisplayNameFor(model => model.dui)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.age)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.gender)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.gender)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.create_at)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.create_at)
+            @Html.DisplayFor(model => model.dui)
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

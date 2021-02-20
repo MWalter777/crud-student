@@ -12,7 +12,7 @@ namespace crud_students.Controllers
 {
     public class StudentsController : Controller
     {
-        private crud_studentsContext db = new crud_studentsContext();
+        private Model db = new Model();
 
 
         public ActionResult Index()
@@ -44,7 +44,7 @@ namespace crud_students.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,surname,age,gender")] Student student)
+        public ActionResult Create([Bind(Include = "id,name,surname,age,gender")] Student student)
         {
             if (ModelState.IsValid)
             {
@@ -62,7 +62,7 @@ namespace crud_students.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateWithModal([Bind(Include = "Name,surname,age,gender")] Student student)
+        public ActionResult CreateWithModal([Bind(Include = "name,surname,age,gender")] Student student)
         {
             if (ModelState.IsValid)
             {
@@ -93,7 +93,7 @@ namespace crud_students.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,surname,age,gender,create_at")] Student student)
+        public ActionResult Edit([Bind(Include = "id,name,surname,age,gender,create_at")] Student student)
         {
             if (ModelState.IsValid)
             {
@@ -106,7 +106,7 @@ namespace crud_students.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult UpdateWithModal([Bind(Include = "Id,Name,surname,age,gender,create_at")] Student student)
+        public ActionResult UpdateWithModal([Bind(Include = "id,name,surname,age,gender,create_at")] Student student)
         {
             if (ModelState.IsValid)
             {

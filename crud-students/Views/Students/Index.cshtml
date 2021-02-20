@@ -14,7 +14,7 @@
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.Name)
+                    @Html.DisplayNameFor(model => model.name)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.surname)
@@ -36,7 +36,7 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Name)
+                        @Html.DisplayFor(modelItem => item.name)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.surname)
@@ -51,9 +51,9 @@
                         @Html.DisplayFor(modelItem => item.create_at)
                     </td>
                     <td>
-                        <button class="btn btn-outline-warning" onclick="updateModal(@item.Id,'@item.Name', '@item.surname', @item.age, '@item.gender')">Update</button>
-                        <button class="btn btn-outline-info" onclick="infoModal('@item.Name', '@item.surname', @item.age, '@item.gender')">Show</button>
-                        <button class="btn btn-outline-danger" onclick='deleteModal(@item.Id,"@item.Name", "@item.surname", "@item.age", "@item.gender")'>Delete</button>
+                        <button class="btn btn-outline-warning" onclick="updateModal(@item.id,'@item.name', '@item.surname', @item.age, '@item.gender')">Update</button>
+                        <button class="btn btn-outline-info" onclick="infoModal('@item.name', '@item.surname', @item.age, '@item.gender')">Show</button>
+                        <button class="btn btn-outline-danger" onclick='deleteModal(@item.id,"@item.name", "@item.surname", "@item.age", "@item.gender")'>Delete</button>
                     </td>
                 </tr>
             }
@@ -77,10 +77,10 @@
                     <div class="form-horizontal">
                         <div id="errors"></div>
                         <div class="form-group">
-                            <input type="number" id="Id" name="Id" hidden />
+                            <input type="number" id="id" name="id" hidden />
                             <label class="control-label col-md-2">Name</label>
                             <div class="input-text">
-                                <input type="text" value="" id="Name" name="Name" class="form-control" required style="max-width: 100%;width: 100%;" />
+                                <input type="text" value="" id="name" name="name" class="form-control" required style="max-width: 100%;width: 100%;" />
                             </div>
                         </div>
 
@@ -243,8 +243,8 @@
 
         function createModal() {
             var form = document.getElementById('form');
-            $('#Id').val("");
-            $('#Name').val("");
+            $('#id').val("");
+            $('#name').val("");
             $('#surname').val("");
             $('#age').val("");
             $('#gender').val("");
@@ -256,8 +256,8 @@
         function updateModal(Id, Name, surname, age, gender){
             var form = document.getElementById('form');
             form.action = "/Students/UpdateWithModal";
-            $('#Id').val(Id);
-            $('#Name').val(Name);
+            $('#id').val(Id);
+            $('#name').val(Name);
             $('#surname').val(surname);
             $('#age').val(age);
             $('#gender').val(gender);

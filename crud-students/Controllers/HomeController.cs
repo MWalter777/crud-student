@@ -9,7 +9,7 @@ namespace crud_students.Controllers
 {
     public class HomeController : Controller
     {
-        private crud_studentsContext db = new crud_studentsContext();
+        private Model db = new Model();
 
         public ActionResult Index()
         {
