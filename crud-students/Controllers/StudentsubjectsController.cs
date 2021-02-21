@@ -95,23 +95,15 @@ namespace crud_students.Controllers
         {
             if (ModelState.IsValid)
             {
-                Studentsubject ss2 = db.Studentsubjects.ToList().Find(value => value.id_student == studentsubject.id_student && value.id_subject == studentsubject.id_subject);
-                if (ss2 == null)
+                if (studentsubject.examen1 >= 0 && studentsubject.examen1 <= 10 && studentsubject.examen2 >= 0 && studentsubject.examen2 <= 10 && studentsubject.examen3 >= 0 && studentsubject.examen3 <= 10 && studentsubject.examen4 >= 0 && studentsubject.examen4 <= 10)
                 {
-                    if (ss2.examen1 >= 0 && ss2.examen1 <= 10 && ss2.examen2 >= 0 && ss2.examen2 <= 10 && ss2.examen3 >= 0 && ss2.examen3 <= 10 && ss2.examen4 >= 0 && ss2.examen4 <= 10)
-                    {
-                        db.Entry(studentsubject).State = EntityState.Modified;
-                        db.SaveChanges();
-                        return RedirectToAction("Index");
-                    }
-                    else
-                    {
-                        ViewBag.error = "Error, Score must be between 0 and 10";
-                    }
+                    db.Entry(studentsubject).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
                 }
                 else
                 {
-                    ViewBag.error = "Error, Student already have the score!";
+                    ViewBag.error = "Error, Score must be between 0 and 10";
                 }
             }
             ViewBag.id_student = new SelectList(db.Students, "id", "name", studentsubject.id_student);

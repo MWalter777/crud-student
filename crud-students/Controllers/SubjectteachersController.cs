@@ -90,17 +90,9 @@ namespace crud_students.Controllers
         {
             if (ModelState.IsValid)
             {
-                Subjectteacher st2 = db.Subjectteachers.ToList().Find(value => value.id_subject == subjectteacher.id_subject && value.id_teacher == subjectteacher.id_teacher);
-                if (st2 == null)
-                {
-                    db.Entry(subjectteacher).State = EntityState.Modified;
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
-                }
-                else
-                {
-                    ViewBag.error = "Error, ya existe ese profesor en esa materia";
-                }
+                db.Entry(subjectteacher).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
             }
             ViewBag.id_subject = new SelectList(db.Subjects, "id", "name_subject", subjectteacher.id_subject);
             ViewBag.id_teacher = new SelectList(db.Teachers, "id", "name", subjectteacher.id_teacher);
