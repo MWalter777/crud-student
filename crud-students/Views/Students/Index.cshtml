@@ -53,6 +53,7 @@
                 <td>
                     <button class="btn btn-outline-warning" onclick="updateModal(@item.id,'@item.name', '@item.surname', @item.age, '@item.gender')">Update</button>
                     <button class="btn btn-outline-info" onclick="infoModal('@item.name', '@item.surname', @item.age, '@item.gender')">Show</button>
+                    <button class="btn btn-outline-success" onclick='addScoreModal(@item.id,"@item.name", "@item.surname", "@item.age", "@item.gender")'>Delete</button>
                     <button class="btn btn-outline-danger" onclick='deleteModal(@item.id,"@item.name", "@item.surname", "@item.age", "@item.gender")'>Delete</button>
                 </td>
             </tr>
@@ -224,6 +225,61 @@
 
 
 
+<div class="modal fade" id="modalAddScore" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="titleModalDelete">Add Score</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="/Students/AddScore" method="post">
+                    @Html.AntiForgeryToken()
+                    <div class="form-horizontal">
+                        <div class="form-group">
+
+                            <label class="control-label col-md-2">Name</label>
+                            <div class="input-text">
+                                <input type="text" value="" id="nameAddScore" class="form-control" readonly style="max-width: 100%;width: 100%;" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Surname</label>
+                            <div class="input-text">
+                                <input type="text" value="" id="surnameAddScore" class="form-control" readonly style="max-width: 100%;width: 100%;" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Age</label>
+                            <div class="input-text">
+                                <input type="number" value="" id="ageAddScore" class="form-control" readonly />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Gender</label>
+                            <div class="input-text">
+                                <input type="text" value="" id="genderAddScore" class="form-control" readonly style="max-width: 100%;width: 100%;" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10" style="max-width: 100%;display: flex;flex-direction: column;justify-content: center;">
+                                <input type="submit" value="Add Score" class="btn btn-outline-danger" style="width: 95%;max-width: 100%;margin: auto;" />
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 
 @section scripts {
@@ -279,6 +335,15 @@
             $('#genderDelete').val(gender);
             $('#titleModalDelete').text("¿Are you sure delete "+Name+" ?");
             $('#modalDelete').modal('show');
+        }
+
+        function addScoreModal(Id, Name, surname, age, gender){
+            $('#idAddScore').val(Id);
+            $('#nameAddScore').val(Name);
+            $('#surnameAddScore').val(surname);
+            $('#ageAddScore').val(age);
+            $('#genderAddScore').val(gender);
+            $('#modalAddScore').modal('show');
         }
 
     </script>

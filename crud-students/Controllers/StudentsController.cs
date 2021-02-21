@@ -17,7 +17,7 @@ namespace crud_students.Controllers
 
         public ActionResult Index()
         {
-            return View(db.Students.ToList());
+            return View(db.Students.Include(s => s.studentsubjects).ToList());
         }
 
 
@@ -142,6 +142,20 @@ namespace crud_students.Controllers
         {
             Student student = db.Students.Find(idDelete);
             db.Students.Remove(student);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddScore(int idStudentSubjects, decimal value)
+        {
+            Score score = new Score();
+            score.id_studentsubject = idStudentSubjects;
+            score.score_data = value;
+            db.Scores.Add(score);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
