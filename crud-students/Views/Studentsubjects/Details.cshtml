@@ -3,8 +3,7 @@
 @{
     ViewBag.Title = "Details";
 }
-
-<h2>Details</h2>
+ 
 
 <div>
     <h4>Studentsubject</h4>
@@ -26,9 +25,41 @@
             @Html.DisplayFor(model => model.subject.name_subject)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.examen1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.examen1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.examen2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.examen2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.examen3)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.examen3)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.examen4)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.examen4)
+        </dd>
+
     </dl>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
-    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-secondary" })
+    @Html.ActionLink("Back to List", "Index")
 </p>

@@ -53,8 +53,9 @@
                 <td>
                     <button class="btn btn-outline-warning" onclick="updateModal(@item.id,'@item.name', '@item.surname', @item.age, '@item.gender')">Update</button>
                     <button class="btn btn-outline-info" onclick="infoModal('@item.name', '@item.surname', @item.age, '@item.gender')">Show</button>
-                    <button class="btn btn-outline-success" onclick='addScoreModal(@item.id,"@item.name", "@item.surname", "@item.age", "@item.gender")'>Delete</button>
                     <button class="btn btn-outline-danger" onclick='deleteModal(@item.id,"@item.name", "@item.surname", "@item.age", "@item.gender")'>Delete</button>
+                    <a class="btn btn-outline-success" href="/Students/showSubject/@item.id">Show subjects</a>
+                    <a class="btn btn-outline-success" href="/Students/showScore/@item.id">Show score</a>
                 </td>
             </tr>
         }

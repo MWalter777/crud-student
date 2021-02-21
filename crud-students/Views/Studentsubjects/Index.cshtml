@@ -17,6 +17,18 @@
             <th>
                 @Html.DisplayNameFor(model => model.subject.name_subject)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.examen1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.examen2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.examen3)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.examen4)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -31,13 +43,24 @@
                     @Html.DisplayFor(modelItem => item.subject.name_subject)
                 </td>
                 <td>
+                    @Html.DisplayFor(modelItem => item.examen1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.examen2)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.examen3)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.examen4)
+                </td>
+                <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.id }, new { @class = "btn btn-outline-warning" }) |
                     @Html.ActionLink("Details", "Details", new { id = item.id }, new { @class = "btn btn-outline-info" }) |
                     @Html.ActionLink("Delete", "Delete", new { id = item.id }, new { @class = "btn btn-outline-danger" })
                 </td>
             </tr>
         }
-
     </tbody>
 
 </table>

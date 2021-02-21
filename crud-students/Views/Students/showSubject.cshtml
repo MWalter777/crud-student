@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "showSubject";
+}
+
+<h2 class="text-center">@ViewBag.student.name</h2>
+<div class="subjects">
+    @foreach (var item in ViewBag.student.studentsubjects)
+    {
+        <div class="subject">
+            <strong>@item.subject.name_subject</strong>
+        </div>
+    }
+</div>

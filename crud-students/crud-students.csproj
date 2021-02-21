@@ -169,7 +169,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\DirectionsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ScoresController.cs" />
     <Compile Include="Controllers\StudentsController.cs" />
     <Compile Include="Controllers\StudentsubjectsController.cs" />
     <Compile Include="Controllers\SubjectsController.cs" />
@@ -180,7 +179,6 @@
     </Compile>
     <Compile Include="Models\Direction.cs" />
     <Compile Include="Models\Model.cs" />
-    <Compile Include="Models\Score.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Models\Studentsubject.cs" />
     <Compile Include="Models\Subject.cs" />
@@ -240,16 +238,6 @@
     <Content Include="Views\Directions\Details.cshtml" />
     <Content Include="Views\Directions\Edit.cshtml" />
     <Content Include="Views\Directions\Index.cshtml" />
-    <Content Include="Views\Scores\Create.cshtml" />
-    <Content Include="Views\Scores\Delete.cshtml" />
-    <Content Include="Views\Scores\Details.cshtml" />
-    <Content Include="Views\Scores\Edit.cshtml" />
-    <Content Include="Views\Scores\Index.cshtml" />
-    <Content Include="Views\Studentsubjects\Create.cshtml" />
-    <Content Include="Views\Studentsubjects\Delete.cshtml" />
-    <Content Include="Views\Studentsubjects\Details.cshtml" />
-    <Content Include="Views\Studentsubjects\Edit.cshtml" />
-    <Content Include="Views\Studentsubjects\Index.cshtml" />
     <Content Include="Views\Subjects\Create.cshtml" />
     <Content Include="Views\Subjects\Delete.cshtml" />
     <Content Include="Views\Subjects\Details.cshtml" />
@@ -265,6 +253,13 @@
     <Content Include="Views\Teachers\Details.cshtml" />
     <Content Include="Views\Teachers\Edit.cshtml" />
     <Content Include="Views\Teachers\Index.cshtml" />
+    <Content Include="Views\Studentsubjects\Create.cshtml" />
+    <Content Include="Views\Studentsubjects\Delete.cshtml" />
+    <Content Include="Views\Studentsubjects\Details.cshtml" />
+    <Content Include="Views\Studentsubjects\Edit.cshtml" />
+    <Content Include="Views\Studentsubjects\Index.cshtml" />
+    <Content Include="Views\Students\showSubject.cshtml" />
+    <Content Include="Views\Students\showScore.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

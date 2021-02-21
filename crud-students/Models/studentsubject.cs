@@ -12,7 +12,6 @@ namespace crud_students.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Studentsubject()
         {
-            scores = new HashSet<Score>();
         }
 
         public int id { get; set; }
@@ -21,11 +20,21 @@ namespace crud_students.Models
 
         public int id_subject { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Score> scores { get; set; }
-
         public virtual Student student { get; set; }
 
         public virtual Subject subject { get; set; }
+
+        [Required]
+        public virtual double examen1 { get; set; }
+
+        [Required]
+        public virtual double examen2 { get; set; }
+
+        [Required]
+        public virtual double examen3 { get; set; }
+
+        [Required]
+        public virtual double examen4 { get; set; }
+
     }
 }

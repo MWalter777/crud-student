@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "showScore";
+}
+
+<h2 class="text-center">@ViewBag.student.name</h2>
+<div class="subjects">
+    @foreach (var item in ViewBag.student.studentsubjects)
+    {
+        <div class="subject">
+            <dl>
+                <dt>@item.subject.name_subject</dt>
+                <dd>Exam 1 = @item.examen1</dd>
+                <dd>Exam 2 = @item.examen2</dd>
+                <dd>Exam 3 = @item.examen3</dd>
+                <dd>Exam 4 = @item.examen4</dd>
+            </dl>
+        </div>
+    }
+</div>

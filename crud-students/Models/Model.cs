@@ -13,7 +13,6 @@ namespace crud_students.Models
         }
 
         public virtual DbSet<Direction> Directions { get; set; }
-        public virtual DbSet<Score> Scores { get; set; }
         public virtual DbSet<Student> Students { get; set; }
         public virtual DbSet<Studentsubject> Studentsubjects { get; set; }
         public virtual DbSet<Subject> Subjects { get; set; }
@@ -32,10 +31,6 @@ namespace crud_students.Models
                 .HasForeignKey(e => e.id_direction)
                 .WillCascadeOnDelete();
 
-            modelBuilder.Entity<Score>()
-                .Property(e => e.score_data)
-                .HasPrecision(8, 2);
-
             modelBuilder.Entity<Student>()
                 .Property(e => e.name)
                 .IsUnicode(false);
@@ -53,11 +48,6 @@ namespace crud_students.Models
                 .WithRequired(e => e.student)
                 .HasForeignKey(e => e.id_student);
 
-            modelBuilder.Entity<Studentsubject>()
-                .HasMany(e => e.scores)
-                .WithOptional(e => e.studentsubject)
-                .HasForeignKey(e => e.id_studentsubject)
-                .WillCascadeOnDelete();
 
             modelBuilder.Entity<Subject>()
                 .Property(e => e.name_subject)

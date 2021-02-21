@@ -21,6 +21,43 @@ namespace crud_students.Controllers
         }
 
 
+        public ActionResult showSubject(int? id)
+        {
+            if (id != null)
+            {
+                Student student = db.Students.Find(id);
+                if (student == null)
+                {
+                    return HttpNotFound();
+                }
+                ViewBag.student = student;
+                return View();
+            }else
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+        }
+
+
+        public ActionResult showScore(int? id)
+        {
+            if (id != null)
+            {
+                Student student = db.Students.Find(id);
+                if (student == null)
+                {
+                    return HttpNotFound();
+                }
+                ViewBag.student = student;
+                return View();
+            }
+            else
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+        }
+
+
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -152,11 +189,6 @@ namespace crud_students.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult AddScore(int idStudentSubjects, decimal value)
         {
-            Score score = new Score();
-            score.id_studentsubject = idStudentSubjects;
-            score.score_data = value;
-            db.Scores.Add(score);
-            db.SaveChanges();
             return RedirectToAction("Index");
         }
 

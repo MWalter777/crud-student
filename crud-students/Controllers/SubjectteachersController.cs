@@ -14,14 +14,12 @@ namespace crud_students.Controllers
     {
         private Model db = new Model();
 
-        // GET: Subjectteachers
         public ActionResult Index()
         {
             var subjectteachers = db.Subjectteachers.Include(s => s.subject).Include(s => s.teacher);
             return View(subjectteachers.ToList());
         }
 
-        // GET: Subjectteachers/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,7 +34,7 @@ namespace crud_students.Controllers
             return View(subjectteacher);
         }
 
-        // GET: Subjectteachers/Create
+
         public ActionResult Create()
         {
             ViewBag.id_subject = new SelectList(db.Subjects, "id", "name_subject");
@@ -44,18 +42,23 @@ namespace crud_students.Controllers
             return View();
         }
 
-        // POST: Subjectteachers/Create
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
-        // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "id,id_subject,id_teacher")] Subjectteacher subjectteacher)
         {
             if (ModelState.IsValid)
             {
-                db.Subjectteachers.Add(subjectteacher);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                Subjectteacher st2 = db.Subjectteachers.ToList().Find(value => value.id_subject == subjectteacher.id_subject && value.id_teacher == subjectteacher.id_teacher);
+                if (st2 == null)
+                {
+                    db.Subjectteachers.Add(subjectteacher);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }else
+                {
+                    ViewBag.error = "Error, ya existe ese profesor en esa materia";
+                }
             }
 
             ViewBag.id_subject = new SelectList(db.Subjects, "id", "name_subject", subjectteacher.id_subject);
@@ -63,7 +66,7 @@ namespace crud_students.Controllers
             return View(subjectteacher);
         }
 
-        // GET: Subjectteachers/Edit/5
+
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -80,25 +83,31 @@ namespace crud_students.Controllers
             return View(subjectteacher);
         }
 
-        // POST: Subjectteachers/Edit/5
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
-        // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "id,id_subject,id_teacher")] Subjectteacher subjectteacher)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(subjectteacher).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                Subjectteacher st2 = db.Subjectteachers.ToList().Find(value => value.id_subject == subjectteacher.id_subject && value.id_teacher == subjectteacher.id_teacher);
+                if (st2 == null)
+                {
+                    db.Entry(subjectteacher).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.error = "Error, ya existe ese profesor en esa materia";
+                }
             }
             ViewBag.id_subject = new SelectList(db.Subjects, "id", "name_subject", subjectteacher.id_subject);
             ViewBag.id_teacher = new SelectList(db.Teachers, "id", "name", subjectteacher.id_teacher);
             return View(subjectteacher);
         }
 
-        // GET: Subjectteachers/Delete/5
+
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -113,7 +122,7 @@ namespace crud_students.Controllers
             return View(subjectteacher);
         }
 
-        // POST: Subjectteachers/Delete/5
+
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

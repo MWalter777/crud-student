@@ -14,14 +14,12 @@ namespace crud_students.Controllers
     {
         private Model db = new Model();
 
-        // GET: Studentsubjects
         public ActionResult Index()
         {
             var studentsubjects = db.Studentsubjects.Include(s => s.student).Include(s => s.subject);
             return View(studentsubjects.ToList());
         }
 
-        // GET: Studentsubjects/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,7 +34,7 @@ namespace crud_students.Controllers
             return View(studentsubject);
         }
 
-        // GET: Studentsubjects/Create
+
         public ActionResult Create()
         {
             ViewBag.id_student = new SelectList(db.Students, "id", "name");
@@ -44,18 +42,29 @@ namespace crud_students.Controllers
             return View();
         }
 
-        // POST: Studentsubjects/Create
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
-        // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,id_student,id_subject")] Studentsubject studentsubject)
+        public ActionResult Create([Bind(Include = "id,id_student,id_subject,examen1,examen2,examen3,examen4")] Studentsubject studentsubject)
         {
             if (ModelState.IsValid)
             {
-                db.Studentsubjects.Add(studentsubject);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                Studentsubject ss2 = db.Studentsubjects.ToList().Find(value => value.id_student == studentsubject.id_student && value.id_subject == studentsubject.id_subject);
+                if (ss2 == null)
+                {
+                    if (studentsubject.examen1 >= 0 && studentsubject.examen1 <= 10 && studentsubject.examen2 >= 0 && studentsubject.examen2 <= 10 && studentsubject.examen3 >= 0 && studentsubject.examen3 <= 10 && studentsubject.examen4 >= 0 && studentsubject.examen4 <= 10)
+                    {
+                        db.Studentsubjects.Add(studentsubject);
+                        db.SaveChanges();
+                        return RedirectToAction("Index");
+                    }else
+                    {
+                        ViewBag.error = "Error, Score must be between 0 and 10";
+                    }
+                }else
+                {
+                    ViewBag.error = "Error, Student already have the score!";
+                }
             }
 
             ViewBag.id_student = new SelectList(db.Students, "id", "name", studentsubject.id_student);
@@ -63,7 +72,6 @@ namespace crud_students.Controllers
             return View(studentsubject);
         }
 
-        // GET: Studentsubjects/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -80,25 +88,38 @@ namespace crud_students.Controllers
             return View(studentsubject);
         }
 
-        // POST: Studentsubjects/Edit/5
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
-        // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,id_student,id_subject")] Studentsubject studentsubject)
+        public ActionResult Edit([Bind(Include = "id,id_student,id_subject,examen1,examen2,examen3,examen4")] Studentsubject studentsubject)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(studentsubject).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                Studentsubject ss2 = db.Studentsubjects.ToList().Find(value => value.id_student == studentsubject.id_student && value.id_subject == studentsubject.id_subject);
+                if (ss2 == null)
+                {
+                    if (ss2.examen1 >= 0 && ss2.examen1 <= 10 && ss2.examen2 >= 0 && ss2.examen2 <= 10 && ss2.examen3 >= 0 && ss2.examen3 <= 10 && ss2.examen4 >= 0 && ss2.examen4 <= 10)
+                    {
+                        db.Entry(studentsubject).State = EntityState.Modified;
+                        db.SaveChanges();
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ViewBag.error = "Error, Score must be between 0 and 10";
+                    }
+                }
+                else
+                {
+                    ViewBag.error = "Error, Student already have the score!";
+                }
             }
             ViewBag.id_student = new SelectList(db.Students, "id", "name", studentsubject.id_student);
             ViewBag.id_subject = new SelectList(db.Subjects, "id", "name_subject", studentsubject.id_subject);
             return View(studentsubject);
         }
 
-        // GET: Studentsubjects/Delete/5
+
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -113,7 +134,7 @@ namespace crud_students.Controllers
             return View(studentsubject);
         }
 
-        // POST: Studentsubjects/Delete/5
+
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

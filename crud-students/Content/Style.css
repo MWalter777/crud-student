@@ -1,4 +1,14 @@
 ﻿
+.subjects{
+    width: 90%;
+    margin: auto;
+    margin-top: 2rem;
+}
+
+.subject{
+    color: #fe4066;
+    text-transform: uppercase;
+}
 
 .input-text{
     width: 90%;
