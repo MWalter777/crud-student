@@ -12,43 +12,44 @@ using crud_students.Models;
 
 namespace crud_students.Controllers
 {
-    public class RestTeachersController : ApiController
+    public class RestStudentsController : ApiController
     {
         private Model db = new Model();
-        // api/RestTeachers/
-        public IQueryable<Teacher> GetTeachers()
+
+        // GET: api/RestStudents
+        public IQueryable<Student> GetStudents()
         {
-            return db.Teachers;
+            return db.Students;
         }
 
-
-        [ResponseType(typeof(Teacher))]
-        public IHttpActionResult GetTeacher(int id)
+        // GET: api/RestStudents/5
+        [ResponseType(typeof(Student))]
+        public IHttpActionResult GetStudent(int id)
         {
-            Teacher teacher = db.Teachers.Find(id);
-            if (teacher == null)
+            Student student = db.Students.Find(id);
+            if (student == null)
             {
                 return NotFound();
             }
 
-            return Ok(teacher);
+            return Ok(student);
         }
 
-
+        // PUT: api/RestStudents/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutTeacher(int id, Teacher teacher)
+        public IHttpActionResult PutStudent(int id, Student student)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != teacher.id)
+            if (id != student.id)
             {
                 return BadRequest();
             }
 
-            db.Entry(teacher).State = EntityState.Modified;
+            db.Entry(student).State = EntityState.Modified;
 
             try
             {
@@ -56,7 +57,7 @@ namespace crud_students.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!TeacherExists(id))
+                if (!StudentExists(id))
                 {
                     return NotFound();
                 }
@@ -69,34 +70,35 @@ namespace crud_students.Controllers
             return StatusCode(HttpStatusCode.OK);
         }
 
-
-        [ResponseType(typeof(Teacher))]
-        public IHttpActionResult PostTeacher(Teacher teacher)
+        // POST: api/RestStudents
+        [ResponseType(typeof(Student))]
+        public IHttpActionResult PostStudent(Student student)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Teachers.Add(teacher);
+            db.Students.Add(student);
             db.SaveChanges();
 
             return StatusCode(HttpStatusCode.OK);
         }
 
-        [ResponseType(typeof(Teacher))]
-        public IHttpActionResult DeleteTeacher(int id)
+        // DELETE: api/RestStudents/5
+        [ResponseType(typeof(Student))]
+        public IHttpActionResult DeleteStudent(int id)
         {
-            Teacher teacher = db.Teachers.Find(id);
-            if (teacher == null)
+            Student student = db.Students.Find(id);
+            if (student == null)
             {
                 return NotFound();
             }
 
-            db.Teachers.Remove(teacher);
+            db.Students.Remove(student);
             db.SaveChanges();
 
-            return Ok(teacher);
+            return Ok(student);
         }
 
         protected override void Dispose(bool disposing)
@@ -108,9 +110,9 @@ namespace crud_students.Controllers
             base.Dispose(disposing);
         }
 
-        private bool TeacherExists(int id)
+        private bool StudentExists(int id)
         {
-            return db.Teachers.Count(e => e.id == id) > 0;
+            return db.Students.Count(e => e.id == id) > 0;
         }
     }
 }

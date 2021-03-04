@@ -1,5 +1,6 @@
 namespace crud_students.Models
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
@@ -15,8 +16,10 @@ namespace crud_students.Models
 
         public int id_teacher { get; set; }
 
+        [JsonIgnore]
         public virtual Subject subject { get; set; }
 
+        [JsonIgnore]
         public virtual Teacher teacher { get; set; }
     }
 }

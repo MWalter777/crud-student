@@ -1,5 +1,6 @@
 namespace crud_students.Models
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
@@ -28,6 +29,7 @@ namespace crud_students.Models
         [StringLength(50)]
         public string dui { get; set; }
 
+        [JsonIgnore]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Subjectteacher> subjectteachers { get; set; }
     }

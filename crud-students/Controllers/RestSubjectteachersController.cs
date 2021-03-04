@@ -12,43 +12,44 @@ using crud_students.Models;
 
 namespace crud_students.Controllers
 {
-    public class RestTeachersController : ApiController
+    public class RestSubjectteachersController : ApiController
     {
         private Model db = new Model();
-        // api/RestTeachers/
-        public IQueryable<Teacher> GetTeachers()
+
+        // GET: api/RestSubjectteachers
+        public IQueryable<Subjectteacher> GetSubjectteachers()
         {
-            return db.Teachers;
+            return db.Subjectteachers;
         }
 
-
-        [ResponseType(typeof(Teacher))]
-        public IHttpActionResult GetTeacher(int id)
+        // GET: api/RestSubjectteachers/5
+        [ResponseType(typeof(Subjectteacher))]
+        public IHttpActionResult GetSubjectteacher(int id)
         {
-            Teacher teacher = db.Teachers.Find(id);
-            if (teacher == null)
+            Subjectteacher subjectteacher = db.Subjectteachers.Find(id);
+            if (subjectteacher == null)
             {
                 return NotFound();
             }
 
-            return Ok(teacher);
+            return Ok(subjectteacher);
         }
 
-
+        // PUT: api/RestSubjectteachers/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutTeacher(int id, Teacher teacher)
+        public IHttpActionResult PutSubjectteacher(int id, Subjectteacher subjectteacher)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != teacher.id)
+            if (id != subjectteacher.id)
             {
                 return BadRequest();
             }
 
-            db.Entry(teacher).State = EntityState.Modified;
+            db.Entry(subjectteacher).State = EntityState.Modified;
 
             try
             {
@@ -56,7 +57,7 @@ namespace crud_students.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!TeacherExists(id))
+                if (!SubjectteacherExists(id))
                 {
                     return NotFound();
                 }
@@ -69,34 +70,35 @@ namespace crud_students.Controllers
             return StatusCode(HttpStatusCode.OK);
         }
 
-
-        [ResponseType(typeof(Teacher))]
-        public IHttpActionResult PostTeacher(Teacher teacher)
+        // POST: api/RestSubjectteachers
+        [ResponseType(typeof(Subjectteacher))]
+        public IHttpActionResult PostSubjectteacher(Subjectteacher subjectteacher)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Teachers.Add(teacher);
+            db.Subjectteachers.Add(subjectteacher);
             db.SaveChanges();
 
             return StatusCode(HttpStatusCode.OK);
         }
 
-        [ResponseType(typeof(Teacher))]
-        public IHttpActionResult DeleteTeacher(int id)
+        // DELETE: api/RestSubjectteachers/5
+        [ResponseType(typeof(Subjectteacher))]
+        public IHttpActionResult DeleteSubjectteacher(int id)
         {
-            Teacher teacher = db.Teachers.Find(id);
-            if (teacher == null)
+            Subjectteacher subjectteacher = db.Subjectteachers.Find(id);
+            if (subjectteacher == null)
             {
                 return NotFound();
             }
 
-            db.Teachers.Remove(teacher);
+            db.Subjectteachers.Remove(subjectteacher);
             db.SaveChanges();
 
-            return Ok(teacher);
+            return Ok(subjectteacher);
         }
 
         protected override void Dispose(bool disposing)
@@ -108,9 +110,9 @@ namespace crud_students.Controllers
             base.Dispose(disposing);
         }
 
-        private bool TeacherExists(int id)
+        private bool SubjectteacherExists(int id)
         {
-            return db.Teachers.Count(e => e.id == id) > 0;
+            return db.Subjectteachers.Count(e => e.id == id) > 0;
         }
     }
 }

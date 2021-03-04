@@ -182,6 +182,11 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\DirectionsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RestDirectionsController.cs" />
+    <Compile Include="Controllers\RestStudentsController.cs" />
+    <Compile Include="Controllers\RestStudentsubjectsController.cs" />
+    <Compile Include="Controllers\RestSubjectsController.cs" />
+    <Compile Include="Controllers\RestSubjectteachersController.cs" />
     <Compile Include="Controllers\RestTeachersController.cs" />
     <Compile Include="Controllers\StudentsController.cs" />
     <Compile Include="Controllers\StudentsubjectsController.cs" />

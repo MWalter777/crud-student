@@ -12,43 +12,44 @@ using crud_students.Models;
 
 namespace crud_students.Controllers
 {
-    public class RestTeachersController : ApiController
+    public class RestDirectionsController : ApiController
     {
         private Model db = new Model();
-        // api/RestTeachers/
-        public IQueryable<Teacher> GetTeachers()
+
+        // GET: api/RestDirections
+        public IQueryable<Direction> GetDirections()
         {
-            return db.Teachers;
+            return db.Directions;
         }
 
-
-        [ResponseType(typeof(Teacher))]
-        public IHttpActionResult GetTeacher(int id)
+        // GET: api/RestDirections/5
+        [ResponseType(typeof(Direction))]
+        public IHttpActionResult GetDirection(int id)
         {
-            Teacher teacher = db.Teachers.Find(id);
-            if (teacher == null)
+            Direction direction = db.Directions.Find(id);
+            if (direction == null)
             {
                 return NotFound();
             }
 
-            return Ok(teacher);
+            return Ok(direction);
         }
 
-
+        // PUT: api/RestDirections/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutTeacher(int id, Teacher teacher)
+        public IHttpActionResult PutDirection(int id, Direction direction)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != teacher.id)
+            if (id != direction.id)
             {
                 return BadRequest();
             }
 
-            db.Entry(teacher).State = EntityState.Modified;
+            db.Entry(direction).State = EntityState.Modified;
 
             try
             {
@@ -56,7 +57,7 @@ namespace crud_students.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!TeacherExists(id))
+                if (!DirectionExists(id))
                 {
                     return NotFound();
                 }
@@ -69,34 +70,35 @@ namespace crud_students.Controllers
             return StatusCode(HttpStatusCode.OK);
         }
 
-
-        [ResponseType(typeof(Teacher))]
-        public IHttpActionResult PostTeacher(Teacher teacher)
+        // POST: api/RestDirections
+        [ResponseType(typeof(Direction))]
+        public IHttpActionResult PostDirection(Direction direction)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Teachers.Add(teacher);
+            db.Directions.Add(direction);
             db.SaveChanges();
 
             return StatusCode(HttpStatusCode.OK);
         }
 
-        [ResponseType(typeof(Teacher))]
-        public IHttpActionResult DeleteTeacher(int id)
+        // DELETE: api/RestDirections/5
+        [ResponseType(typeof(Direction))]
+        public IHttpActionResult DeleteDirection(int id)
         {
-            Teacher teacher = db.Teachers.Find(id);
-            if (teacher == null)
+            Direction direction = db.Directions.Find(id);
+            if (direction == null)
             {
                 return NotFound();
             }
 
-            db.Teachers.Remove(teacher);
+            db.Directions.Remove(direction);
             db.SaveChanges();
 
-            return Ok(teacher);
+            return Ok(direction);
         }
 
         protected override void Dispose(bool disposing)
@@ -108,9 +110,9 @@ namespace crud_students.Controllers
             base.Dispose(disposing);
         }
 
-        private bool TeacherExists(int id)
+        private bool DirectionExists(int id)
         {
-            return db.Teachers.Count(e => e.id == id) > 0;
+            return db.Directions.Count(e => e.id == id) > 0;
         }
     }
 }

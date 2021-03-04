@@ -1,5 +1,6 @@
 namespace crud_students.Models
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
@@ -35,8 +36,10 @@ namespace crud_students.Models
 
         public DateTime? create_at { get; set; }
 
+        [JsonIgnore]
         public virtual Direction direction { get; set; }
 
+        [JsonIgnore]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Studentsubject> studentsubjects { get; set; }
     }
