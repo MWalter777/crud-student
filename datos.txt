@@ -1,0 +1,37 @@
+/* CRUD ESTUDIANTE */
+obtener todos: http://localhost:58865/api/RestStudents 
+obtener uno: http://localhost:58865/api/RestStudents/1008
+nuevo: http://localhost:58865/api/RestStudents/
+body: 
+{
+    "id_direction": null,
+    "name": "POST",
+    "surname": "post",
+    "age": 25,
+    "gender": "male",
+    "create_at": 
+}
+actualizar: http://localhost:58865/api/RestStudents/1008
+body: 
+{
+    "id": 1008,
+    "id_direction": null,
+    "name": "PUT",
+    "surname": "post",
+    "age": 25,
+    "gender": "male",
+    "create_at": null
+}
+delete: http://localhost:58865/api/RestStudents/1008
+
+/* CRUD teacher */
+http://localhost:58865/api/RestTeachers
+
+/* CRUD Subject */
+http://localhost:58865/api/RestSubjects
+
+/* CRUD StudentSubject */
+http://localhost:58865/api/RestStudentsubjects
+
+
+
